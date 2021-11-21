@@ -1,7 +1,6 @@
 package com.example.demo.jwt;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.crypto.SecretKey;
@@ -54,11 +53,13 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 			.setSubject(authResult.getName())
 			.claim("authorities", authResult.getAuthorities())
 			.setIssuedAt(new Date())
-			.setExpiration(java.sql.Date.valueOf(LocalDate.now().plusDays(jwtConfig.getTokenExpirationAfterDays())))
+			.setExpiration(new Date(System.currentTimeMillis()+jwtConfig.getTokenExpirationAfterMinutes()*60*1000))
 			.signWith(secretKey)
 			.compact();
 		
 		response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix()+token);
+		response.getWriter().write("token = "+token);
+		response.getWriter().flush();
 	}
 	
 

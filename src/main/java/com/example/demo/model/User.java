@@ -13,8 +13,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import org.wildfly.common.annotation.NotNull;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -23,10 +21,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	private String id;
-	@NotNull
 	@Column(name = "username", unique = true)
 	private String userName;
-	@NotNull
 	@Column(name = "password")
 	private String password;
 	@ManyToMany(fetch = FetchType.EAGER)

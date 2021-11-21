@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.5.5</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/> 
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>tiger-it-coding-test</artifactId>
+	<artifactId>rokomari-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>tiger-it-coding-test</name>
-	<description>Coding Test project for Tiger IT</description>
+	<name>rokomari-project</name>
+	<description>Coding Test project Rokomari</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
@@ -20,16 +20,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,27 +34,9 @@
 	      <artifactId>spring-boot-starter-security</artifactId>
 	    </dependency>
 		<dependency>
-	        <groupId>org.springframework.boot</groupId>
-	        <artifactId>spring-boot-starter-thymeleaf</artifactId>
-	    </dependency>
-		<dependency>
-		    <groupId>org.thymeleaf.extras</groupId>
-		    <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-		</dependency>
-		<dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-		<dependency>
-		    <groupId>org.webjars</groupId>
-		    <artifactId>bootstrap</artifactId>
-		    <version>5.1.2</version>
-		</dependency>
-		<dependency>
-		    <groupId>org.webjars.bower</groupId>
-		    <artifactId>jquery</artifactId>
-		    <version>3.6.0</version>
-		</dependency>
 		<dependency>
 	    <groupId>io.jsonwebtoken</groupId>
 	    <artifactId>jjwt-api</artifactId>
@@ -78,7 +50,7 @@
 		</dependency>
 		<dependency>
 		    <groupId>io.jsonwebtoken</groupId>
-		    <artifactId>jjwt-jackson</artifactId> <!-- or jjwt-gson if Gson is preferred -->
+		    <artifactId>jjwt-jackson</artifactId>
 		    <version>0.11.2</version>
 		    <scope>runtime</scope>
 		</dependency>
