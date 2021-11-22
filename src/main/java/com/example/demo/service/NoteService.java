@@ -6,6 +6,7 @@ import com.example.demo.model.User;
 import com.example.demo.repository.NoteRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@CacheConfig(cacheNames = {"note"})
 public class NoteService {
     @Autowired
     private NoteRepository noteRepository;
@@ -26,7 +28,7 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    @CachePut(key = "#id", value = "note", unless="#result == null")
+    @CachePut(key = "#id")
     public Note update(Long id, String note, String username) {
         Note currentNote = noteRepository.findById(id).orElse(new Note());
         if(currentNote.getId() != null && (currentNote.getUsername().equals(username) || isAdmin(username))) {
@@ -47,12 +49,12 @@ public class NoteService {
         return noteRepository.findByUsernameAndStatus(username, "A");
     }
 
-    @Cacheable(key = "#id", value = "note", unless="#result == null")
+    @Cacheable(key = "#id")
     public Note getNoteById(Long id) {
         return noteRepository.findById(id).orElse(new Note());
     }
 
-    @CacheEvict(key = "#id", value = "note")
+    @CacheEvict(key = "#id")
     public String deleteNote(Long id, String username) {
         Note note = noteRepository.findById(id).orElse(new Note());
         if(note.getId() != null) {

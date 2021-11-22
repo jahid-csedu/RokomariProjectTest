@@ -20,7 +20,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	private String id;
+	private Long id;
 	@Column(name = "username", unique = true)
 	private String userName;
 	@Column(name = "password")
@@ -31,12 +31,12 @@ public class User {
 			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName = "id"))
 	private Set<Role> roles;
-	
+
 	public User() {
 		super();
 	}
 
-	public User(String id, String userName, String password, Set<Role> roles) {
+	public User(Long id, String userName, String password, Set<Role> roles) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -44,11 +44,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

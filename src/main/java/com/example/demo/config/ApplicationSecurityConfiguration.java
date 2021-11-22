@@ -47,6 +47,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 			.and()
 			.authorizeRequests()
 				.antMatchers("/login").permitAll()
+				.antMatchers("/signup").permitAll()
 				.anyRequest().authenticated()
 			.and()
 			.addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
