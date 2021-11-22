@@ -9,4 +9,5 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Long> {
     public List<Note> findByUsername(String username);
     public List<Note> findByStatus(String status);
+    public List<Note> findByUsernameAndStatus(String username, String status);
 }

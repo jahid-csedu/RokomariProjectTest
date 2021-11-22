@@ -48,6 +48,32 @@ public class NoteController {
         return new ArrayList<>();
     }
 
+    @GetMapping("/{id}")
+    public Note getNoteById(@PathVariable Long id, HttpServletRequest request) {
+        final String tokenHeader = request.getHeader("Authorization");
+        final String token = tokenHeader.replace("Bearer ", "");
+        try{
+            String username = jwtTokenUtil.getUsernameFromToken(token);
+            Note note = noteService.getNoteById(id);
+            if(note.getId() != null) {
+                if(note.getUsername().equals(username)) {
+                    if(note.getStatus().equals("A")) {
+                        return note;
+                    }else {
+                        return null;
+                    }
+                }else if (noteService.isAdmin(username)) {
+                    return note;
+                }else {
+                    return null;
+                }
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @GetMapping("/all")
     public List<Note> getAllNotesByAdmin(HttpServletRequest request) {
         final String tokenHeader = request.getHeader("Authorization");
@@ -72,7 +98,7 @@ public class NoteController {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return new Note();
+        return null;
     }
 
     @DeleteMapping("/{id}")
